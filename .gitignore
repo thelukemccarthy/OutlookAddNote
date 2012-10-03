@@ -1,0 +1,14 @@
+# Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
+bin
+obj
+
+# User files amd backup files
+*~
+*.suo
+*.user
+
+# ReSharper files
+_ReSharper*
+
+# mstest test results
+TestResults
