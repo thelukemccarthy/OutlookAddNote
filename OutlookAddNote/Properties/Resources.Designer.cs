@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 namespace OutlookAddNote.Properties {
+    using System;
     
     
     /// <summary>

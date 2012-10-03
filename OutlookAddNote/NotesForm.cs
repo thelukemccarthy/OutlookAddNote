@@ -56,10 +56,7 @@ namespace OutlookAddNote
             foreach (Note note in notes)
             {
                 int newRowIndex = NotesGrid.Rows.Add();
-                NotesGrid.Rows[newRowIndex].Cells["IDColumn"].Value = note.Id;
-                NotesGrid.Rows[newRowIndex].Cells["ConversationIDColumn"].Value = note.ConversationID;
-                NotesGrid.Rows[newRowIndex].Cells["DateColumn"].Value = note.NoteDate;
-                NotesGrid.Rows[newRowIndex].Cells["NoteColumn"].Value = note.Notes;
+                DisplayNoteInGrid(newRowIndex, note);
             }
         }
 
@@ -84,15 +81,38 @@ namespace OutlookAddNote
                 noteDate = DateTime.Now;
             }
 
-
             bool isDate = DateTime.TryParseExact(tmpNoteDate.ToString(), "dd-MMM-yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out noteDate);
             if(!isDate)
             {
                 noteDate = DateTime.Now;
             }
+
+            int noteId;
+            if (NotesGrid.Rows[rowIndex].Cells["IDColumn"].Value == null)
+            {
+                noteId = 0;
+            }
+            else
+            {
+                bool isInt = int.TryParse(NotesGrid.Rows[rowIndex].Cells["IDColumn"].Value.ToString(), out noteId);
+                if (!isInt)
+                {
+                    noteId = 0;
+                }
+            }
             
             DataMethods tmp = new DataMethods();
-            tmp.AddNote(ConversationID, noteDate, note.ToString());
+            Note savedNote = tmp.AddNote(noteId, ConversationID, noteDate, note.ToString());
+
+            DisplayNoteInGrid(rowIndex, savedNote);
+        }
+
+        private void DisplayNoteInGrid(int rowIndex, Note note)
+        {
+            NotesGrid.Rows[rowIndex].Cells["IDColumn"].Value = note.Id;
+            NotesGrid.Rows[rowIndex].Cells["ConversationIDColumn"].Value = note.ConversationID;
+            NotesGrid.Rows[rowIndex].Cells["DateColumn"].Value = note.NoteDate;
+            NotesGrid.Rows[rowIndex].Cells["NoteColumn"].Value = note.Notes;
         }
 
         private void InsertDateOnNote(int rowIndex)
@@ -103,6 +123,40 @@ namespace OutlookAddNote
             {
                 NotesGrid.Rows[rowIndex].Cells["DateColumn"].Value = DateTime.Now;
             }
+        }
+
+        private void UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            int noteId = GetNoteIdFromGrid(e.Row.Index);
+
+            if (noteId <= 0)
+            {
+                // Note not in DB nothing to do.
+                return;
+            }
+
+            var tmp = new DataMethods();
+            tmp.DeleteNote(noteId);
+        }
+
+        private int GetNoteIdFromGrid(int rowIndex)
+        {
+            int noteId;
+
+            if (NotesGrid.Rows.Count <= rowIndex || NotesGrid.Rows[rowIndex].Cells["IDColumn"].Value == null)
+            {
+                noteId = 0;
+            }
+            else
+            {
+                bool isInt = int.TryParse(NotesGrid.Rows[rowIndex].Cells["IDColumn"].Value.ToString(), out noteId);
+                if (!isInt)
+                {
+                    noteId = 0;
+                }
+            }
+
+            return noteId;
         }
     }
 }
