@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutlookAddNote", "OutlookAddNote\OutlookAddNote.csproj", "{BD352BC6-FAB4-42E6-BB2E-35583E267E1F}"
 EndProject
 Global
