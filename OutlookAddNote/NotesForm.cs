@@ -15,6 +15,7 @@ namespace OutlookAddNote
     public partial class NotesForm : Form
     {
         string ConversationID;
+        private const string DATE_FORMAT = "dd-MMM-yyyy HH:mm";
 
         public NotesForm()
         {
@@ -81,7 +82,7 @@ namespace OutlookAddNote
                 noteDate = DateTime.Now;
             }
 
-            bool isDate = DateTime.TryParseExact(tmpNoteDate.ToString(), "dd-MMM-yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out noteDate);
+            bool isDate = DateTime.TryParseExact(tmpNoteDate.ToString(), DATE_FORMAT, CultureInfo.InvariantCulture, DateTimeStyles.None, out noteDate);
             if(!isDate)
             {
                 noteDate = DateTime.Now;
@@ -115,14 +116,40 @@ namespace OutlookAddNote
             NotesGrid.Rows[rowIndex].Cells["NoteColumn"].Value = note.Notes;
         }
 
-        private void InsertDateOnNote(int rowIndex)
-        {
-            string noteDate = NotesGrid.Rows[rowIndex].Cells["DateColumn"].Value as string;
+        /// <summary>
+        /// Insert the date in the DateColumn of a row in NotesGrid if it is null, empty or can't be converted to a date otherwise leave the date as it is.
+        /// </summary>
+        /// <param name="rowIndex">The row to insert the date into</param>
+        /// <returns>The date in the DateColumn of the NoteGrid. If a date already exists return the current value without updating the field</returns>
+        private DateTime InsertDateOnNote(int rowIndex)
+        {            
+            object tmpNoteDate = NotesGrid.Rows[rowIndex].Cells["DateColumn"].Value;
+            DateTime noteDate;
 
-            if (noteDate == null || noteDate.Trim() == string.Empty)
+            if (tmpNoteDate == null)
             {
-                NotesGrid.Rows[rowIndex].Cells["DateColumn"].Value = DateTime.Now;
+                noteDate = DateTime.Now;
             }
+            else
+            {
+                try
+                {
+                    noteDate = (DateTime)NotesGrid.Rows[rowIndex].Cells["DateColumn"].Value;
+                }
+                catch (InvalidCastException e)
+                {
+                    // user has probably typed the date in try and parse it otherwise just use the current datetime
+                    bool isDate = DateTime.TryParseExact(tmpNoteDate.ToString(), DATE_FORMAT, CultureInfo.InvariantCulture, DateTimeStyles.None, out noteDate);
+                    if (!isDate)
+                    {
+                        noteDate = DateTime.Now;
+                    }
+                }
+            }
+
+            NotesGrid.Rows[rowIndex].Cells["DateColumn"].Value = noteDate;
+            
+            return noteDate;
         }
 
         private void UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
