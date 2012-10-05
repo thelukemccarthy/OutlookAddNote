@@ -75,18 +75,7 @@ namespace OutlookAddNote
                 return;
             }
 
-            DateTime noteDate;
-            object tmpNoteDate = NotesGrid.Rows[rowIndex].Cells["DateColumn"].Value;
-            if(tmpNoteDate == null)
-            {
-                noteDate = DateTime.Now;
-            }
-
-            bool isDate = DateTime.TryParseExact(tmpNoteDate.ToString(), DATE_FORMAT, CultureInfo.InvariantCulture, DateTimeStyles.None, out noteDate);
-            if(!isDate)
-            {
-                noteDate = DateTime.Now;
-            }
+            DateTime noteDate = InsertDateOnNote(rowIndex);
 
             int noteId;
             if (NotesGrid.Rows[rowIndex].Cells["IDColumn"].Value == null)
