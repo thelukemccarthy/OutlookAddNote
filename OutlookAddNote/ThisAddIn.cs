@@ -24,6 +24,7 @@ namespace OutlookAddNote
             {
                 MyNotesForm = new NotesForm();
             }
+
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)

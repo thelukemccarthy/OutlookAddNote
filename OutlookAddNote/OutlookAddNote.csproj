@@ -175,6 +175,11 @@
     <Reference Include="Microsoft.Office.Tools.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.Office.Tools.Outlook, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\Program Files\Reference Assemblies\Microsoft\VSTO40\v4.0.Framework\Microsoft.Office.Tools.Outlook.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.Tools.Applications.Runtime, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Office, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -204,7 +209,6 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Tools.v4.0.Framework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Office.Tools.Outlook, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Tools.Common.v4.0.Utilities, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -225,6 +229,12 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="AllNotesRegion.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AllNotesRegion.Designer.cs">
+      <DependentUpon>AllNotesRegion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\Configuration.cs" />
     <Compile Include="Data\DataMethods.cs" />
     <Compile Include="Data\Entity.cs" />
@@ -239,6 +249,9 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="AllNotesRegion.resx">
+      <DependentUpon>AllNotesRegion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NotesForm.resx">
       <DependentUpon>NotesForm.cs</DependentUpon>
     </EmbeddedResource>
