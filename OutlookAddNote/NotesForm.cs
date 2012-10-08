@@ -20,7 +20,6 @@ namespace OutlookAddNote
         public NotesForm()
         {
             InitializeComponent();
-
         }
 
         private const int CP_NOCLOSE_BUTTON = 0x200;
@@ -71,6 +70,8 @@ namespace OutlookAddNote
                 int newRowIndex = NotesGrid.Rows.Add();
                 DisplayNoteInGrid(newRowIndex, note);
             }
+
+            BringToFront();
         }
 
         private void CellEndEdit(object sender, DataGridViewCellEventArgs e)
