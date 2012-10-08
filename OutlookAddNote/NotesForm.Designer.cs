@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.NotesGrid = new System.Windows.Forms.DataGridView();
             this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ConversationIDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,8 +42,9 @@
             // NotesGrid
             // 
             this.NotesGrid.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.NotesGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.NotesGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.NotesGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.NotesGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.NotesGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IDColumn,
@@ -55,6 +56,10 @@
             this.NotesGrid.MultiSelect = false;
             this.NotesGrid.Name = "NotesGrid";
             this.NotesGrid.RowHeadersWidth = 20;
+            this.NotesGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            this.NotesGrid.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.NotesGrid.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.NotesGrid.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.NotesGrid.Size = new System.Drawing.Size(755, 356);
             this.NotesGrid.TabIndex = 0;
             this.NotesGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellEndEdit);
@@ -75,18 +80,18 @@
             // 
             // DateColumn
             // 
-            dataGridViewCellStyle5.Format = "dd-MMM-yyyy HH:mm";
-            dataGridViewCellStyle5.NullValue = null;
-            this.DateColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Format = "dd-MMM-yyyy HH:mm";
+            dataGridViewCellStyle2.NullValue = null;
+            this.DateColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.DateColumn.HeaderText = "Date";
             this.DateColumn.Name = "DateColumn";
             // 
             // NoteColumn
             // 
             this.NoteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.NoteColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.NoteColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.NoteColumn.HeaderText = "Note";
             this.NoteColumn.Name = "NoteColumn";
             // 
