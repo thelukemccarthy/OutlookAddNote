@@ -14,6 +14,7 @@ namespace OutlookAddNote
         Outlook.Explorer currentExplorer = null;
         string ConversationID;
         private const string DATE_FORMAT = "dd-MMM-yyyy HH:mm";
+        static string PreviousConversationID = string.Empty;
 
         public void MessageChanged(Outlook.MailItem mailItem)
         {
@@ -177,12 +178,6 @@ namespace OutlookAddNote
             // Use e.OutlookItem to get a reference to the current Outlook item.
             private void AllNotesRegionFactory_FormRegionInitializing(object sender, Microsoft.Office.Tools.Outlook.FormRegionInitializingEventArgs e)
             {
-                Outlook.MailItem mailItem = e.OutlookItem as Outlook.MailItem;
-                if (mailItem != null)
-                {
-                    string conversationId = mailItem.ConversationID;
-                    //AllNotesRegion tmp = this.form as AllNotesRegion;
-                }
             }
         }
 
@@ -192,7 +187,13 @@ namespace OutlookAddNote
         // Use this.OutlookItem to get a reference to the current Outlook item.
         // Use this.OutlookFormRegion to get a reference to the form region.
         private void AllNotesRegion_FormRegionShowing(object sender, System.EventArgs e)
-        {
+        {            
+            Outlook.MailItem mailItem = OutlookItem as Outlook.MailItem;
+            if (mailItem != null)
+            {
+                PreviousConversationID = mailItem.ConversationID;
+                MessageChanged(mailItem);                
+            }
         }
 
         // Occurs when the form region is closed.
