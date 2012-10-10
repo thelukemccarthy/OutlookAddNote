@@ -122,7 +122,7 @@
         /// </summary>
         private static void InitializeManifest(Microsoft.Office.Tools.Outlook.FormRegionManifest manifest, Microsoft.Office.Tools.Outlook.Factory factory)
         {
-            manifest.FormRegionName = "AllNotesRegion";
+            manifest.FormRegionName = "Notes";
             manifest.FormRegionType = Microsoft.Office.Tools.Outlook.FormRegionType.Adjoining;
 
         }
