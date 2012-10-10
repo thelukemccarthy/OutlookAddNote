@@ -19,22 +19,7 @@ namespace OutlookAddNote
         public void MessageChanged(Outlook.MailItem mailItem)
         {
             ConversationID = mailItem.ConversationID;
-            SetWindowTitleText(mailItem);
             LoadNotes(ConversationID);
-            Show();
-        }
-
-        private void SetWindowTitleText(Outlook.MailItem mailItem)
-        {
-            if (mailItem.Sender != null)
-            {
-                Text = mailItem.Sender.Name + " - ";
-            }
-
-            if (mailItem.Subject != null)
-            {
-                Text += mailItem.Subject;
-            }
         }
 
         private void LoadNotes(string conversationId)
