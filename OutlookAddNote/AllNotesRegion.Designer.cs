@@ -51,6 +51,8 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.NotesGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.NotesGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.NotesGrid.BackgroundColor = System.Drawing.Color.White;
+            this.NotesGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.NotesGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.NotesGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IDColumn,
