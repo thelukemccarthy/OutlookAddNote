@@ -17,7 +17,8 @@ namespace OutlookAddNote
 
         public void MessageChanged(Outlook.MailItem mailItem)
         {
-            ConversationID = mailItem.ConversationID;
+            ConversationID = mailItem.ConversationID ?? PreviousConversationID;
+            PreviousConversationID = ConversationID;
             LoadNotes(ConversationID);
         }
 
