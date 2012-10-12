@@ -11,7 +11,6 @@ namespace OutlookAddNote
 {
     partial class AllNotesRegion
     {
-        Outlook.Explorer currentExplorer = null;
         string ConversationID;
         private const string DATE_FORMAT = "dd-MMM-yyyy HH:mm";
         static string PreviousConversationID = string.Empty;
@@ -33,8 +32,6 @@ namespace OutlookAddNote
                 int newRowIndex = NotesGrid.Rows.Add();
                 DisplayNoteInGrid(newRowIndex, note);
             }
-
-            BringToFront();
         }
 
         private void CellEndEdit(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
@@ -176,7 +173,6 @@ namespace OutlookAddNote
             Outlook.MailItem mailItem = OutlookItem as Outlook.MailItem;
             if (mailItem != null)
             {
-                PreviousConversationID = mailItem.ConversationID;
                 MessageChanged(mailItem);                
             }
         }
